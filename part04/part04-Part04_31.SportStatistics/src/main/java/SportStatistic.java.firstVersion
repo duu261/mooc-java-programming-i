@@ -1,0 +1,44 @@
+public class SportStatistic {
+    String homeTeam, visitTeam;
+    int homePoints, visitPoints;
+
+    public SportStatistic(String homeTeam, String visitTeam, int homePoints, int visitPoints) {
+        this.homeTeam = homeTeam;
+        this.visitTeam = visitTeam;
+        this.homePoints = homePoints;
+        this.visitPoints = visitPoints;
+    }
+
+    public String getHomeTeam() {
+        return homeTeam;
+    }
+
+    public void setHomeTeam(String homeTeam) {
+        this.homeTeam = homeTeam;
+    }
+
+    public String getVisitTeam() {
+        return visitTeam;
+    }
+
+    public void setVisitTeam(String visitTeam) {
+        this.visitTeam = visitTeam;
+    }
+
+    public int getHomePoints() {
+        return homePoints;
+    }
+
+    public void setHomePoints(int homePoints) {
+        this.homePoints = homePoints;
+    }
+
+    public int getVisitPoints() {
+        return visitPoints;
+    }
+
+    public void setVisitPoints(int visitPoints) {
+        this.visitPoints = visitPoints;
+    }
+
+}

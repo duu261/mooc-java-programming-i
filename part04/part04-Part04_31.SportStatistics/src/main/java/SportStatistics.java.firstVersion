@@ -1,0 +1,67 @@
+
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SportStatistics {
+
+    // WARN: im so sleepy why writting this and is rly shit sr
+    // and im still a beginner didnt use OOP ive checked the solution
+    // but im feel likes if i re-write then i just copy thats worthless...
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("File: ");
+        String file = scan.nextLine();
+        System.out.println("Team: ");
+        String inputTeam = scan.nextLine();
+        scan.close();
+        ArrayList<SportStatistic> stats = getData(file);
+        int gamesPlayed = 0;
+        int wins = 0;
+        int losses = 0;
+        for (SportStatistic stat : stats) {
+            if (stat.getHomeTeam().equals(inputTeam)) {
+                gamesPlayed++;
+                int homePoints = stat.getHomePoints();
+                int visitPoints = stat.getVisitPoints();
+                if (homePoints > visitPoints) {
+                    wins++;
+                } else {
+                    losses++;
+                }
+            }
+            if (stat.getVisitTeam().equals(inputTeam)) {
+                gamesPlayed++;
+                int visitPoints = stat.getVisitPoints();
+                int homePoints = stat.getHomePoints();
+                if (visitPoints > homePoints) {
+                    wins++;
+                } else {
+                    losses++;
+                }
+            }
+        }
+
+        System.out.println("Games: " + gamesPlayed);
+        System.out.println("Wins: " + wins);
+        System.out.println("Losses: " + losses);
+    }
+
+    public static ArrayList<SportStatistic> getData(String file) {
+        ArrayList<SportStatistic> data = new ArrayList<>();
+        try (Scanner fileRead = new Scanner(Paths.get(file))) {
+            while (fileRead.hasNextLine()) {
+                String[] split = fileRead.nextLine().split(",");
+                String homeTeam = split[0];
+                String visitTeam = split[1];
+                int homePoints = Integer.parseInt(split[2]);
+                int visitPoints = Integer.parseInt(split[3]);
+                data.add(new SportStatistic(homeTeam, visitTeam, homePoints, visitPoints));
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return data;
+    }
+
+}
